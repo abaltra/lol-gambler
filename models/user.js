@@ -14,5 +14,13 @@ module.exports = mongoose.model('User',{
 	active: {
 		type: Boolean,
 		default: false
+	},
+	ritoCoins: {
+		type: Number,
+		default: 5000
+	},
+	isBetting: {
+		type: Boolean,
+		default: false
 	}
 });

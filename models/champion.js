@@ -8,5 +8,9 @@ module.exports = mongoose.model('Champion',{
 	totalAppearances: {
 		type: Number,
 		default: 0
+	},
+	appearanceRatio : {
+		type: Number,
+		default: 0
 	}
 });

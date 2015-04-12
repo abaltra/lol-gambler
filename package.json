@@ -23,6 +23,7 @@
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
     "request": "^2.55.0",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "sync-request": "^2.0.1"
   }
 }

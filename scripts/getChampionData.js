@@ -25,6 +25,7 @@ async.series([
 				var champ = new Champion();
 				champ.id = item.id;
 				champ.name = item.name;
+				console.log('Saving ' + champ.name);
 				champ.portraitURL = item.portraitURL;
 				champ.save(function (err) {
 					callback(err);
