@@ -36,6 +36,7 @@ body{
 	font-family: 'ambleregular';
 	background:#1f253d;
 	background-image:url(../images/the-card-master.jpg);
+	background-size: 100%;
 	padding:100px 0;
 	position:relative;
 }
@@ -114,6 +115,14 @@ body{
 	border-right: 6px solid rgba(0, 0, 0, 0);
 	border-bottom: 6px solid #1F253D;
 }
+
+#big-title h1 {
+    color:#FFF; 
+    font-size:5em; 
+    display:block;
+    font-family: 'ambleregular';
+}
+
 fieldset#body {
     padding:15px;
 }

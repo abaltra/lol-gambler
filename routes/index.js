@@ -1,7 +1,8 @@
 var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
-var config = require('../config');
+var router 	= express.Router();
+var User 	= require('../models/user');
+var Bet 	= require('../models/bet');
+var config 	= require('../config');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -77,7 +78,36 @@ module.exports = function(passport){
 
 	/* GET Home Page */
 	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
+		Bet.find( { userId : req.user.id }, function( err, bets ){
+			if( err ){
+				req.flash('message', err);
+				res.redirect('/');
+				return;
+			}
+
+			var lastTenBets 	= [];
+			var wins 			= 0;
+			var losses 			= 0;
+			for( var i = 0; i < bets.length; ++i ){
+				var bet 	= bets[i];
+				if( bet.win ){
+					wins++;
+				}else{
+					losses++;
+				}
+				if( i < 10 )
+				{
+					lastTenBets.push( bet );
+				}
+			}
+
+			res.render('home', { 
+				user: req.user, 
+				bets: lastTenBets,
+				wins: wins,
+				losses: losses
+			});
+		}).sort('date')
 	});
 
 	/* Handle Logout */

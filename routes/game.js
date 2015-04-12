@@ -21,6 +21,16 @@ var BETTYPE = {
 	MATCH: 'match'
 };
 
+var isAuthenticated = function (req, res, next) {
+	// if user is authenticated in the session, call the next() to call the next request handler 
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+	if (req.isAuthenticated())
+		return next();
+	// if the user is not authenticated then redirect him to the login page
+	res.redirect('/');
+}
+
 module.exports = function () {
 
 	//PUBLIC
@@ -49,7 +59,22 @@ module.exports = function () {
 		});
 	});
 
-	router.post('/bet', function (req, res) {
+	router.get('/bet', isAuthenticated, function(req, res){
+		Champion.find({}, function (err, champs) {
+			if (err || !champs) {
+				req.flash('message', err);
+				res.redirect('/');
+				return;
+			}
+
+			res.render('bet', { 
+				user 	: req.user,
+				champs 	: champs
+			});
+		});
+	});
+
+	router.post('/bet', isAuthenticated, function (req, res) {
 		if (!req.body.userid || !req.body.amount || !req.body.type || !req.body.value) return res.status(ERRORS.MALFORMED).send('All parameters are required');
 		var amount = req.body.amount;
 		var type = req.body.type;
@@ -153,4 +178,6 @@ module.exports = function () {
 				});
 		});
 	});
+
+	return router;
 };

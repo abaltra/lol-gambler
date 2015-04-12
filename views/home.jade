@@ -1,15 +1,80 @@
 extends layout
 
 block content
-	div.container
-		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
-				#user
-					h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
-						div.signup-wall
-							ul.user-details
-								li Username ---> #{user.username}
-								li Email    ---> #{user.email}
-								li First Name ---> #{user.firstName} 
-								li Last Name ---> #{user.lastName}
-						a(href='/signout', class='text-center new-account') Sign Out
+    .column_left
+        .menu_box
+            h3 Menu Box
+            .menu_box_list
+                ul
+                    li
+                        a.messages(href='/bet')
+                            span Bets
+                            label.digits #{ bets.length }
+                        .clear
+                    li
+                        a.events()
+                            span RitoCoins
+                            label.digits #{user.ritoCoins}
+                        .clear
+                    li
+                        a.account_settings(href='/home')
+                            span Account Settings
+
+        .chart
+            h3 Bets statistics
+            .diagram
+                canvas#canvas(height='220', width='220')
+                .chart_list
+                    ul
+                        li
+                            a.yellow()
+                                | Wins
+                            p.percentage
+                                | #{ wins }
+                                em %
+                
+                        li
+                            a.red()
+                                | Losses
+                            p.percentage
+                                | #{ losses }
+                                em %
+                        .clear
+                script.
+                    var doughnutData = [
+                        {
+                            value: #{ wins },
+                            color:"#FCB150"
+                        },
+                        {
+                            value : #{ losses },
+                            color : "#E64C65"
+                        }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
+    .column_middle       
+        .weather
+            h3
+                i
+                    img(src='images/location.png', alt='')
+                | Last bets             
+            .today_temp
+                .temp
+                    figure
+                        | Latest 10 bets
+            .temp_list
+                ul
+                    each bet in bets
+                        li
+                            a()
+                                span.day_name bet.matchId
+                                label.digits
+                                    | W : bet.winnings
+                                    em RitoCoins  
+                                label.digits
+                                    | B : bet.amount
+                                    em RitoCoins  
+                                .clear
+                    .clear
+                
+            
