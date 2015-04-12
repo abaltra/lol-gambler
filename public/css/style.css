@@ -540,6 +540,17 @@ fieldset#body {
 	-moz-border-radius:5px;
 	-o-border-radius:5px;
 }
+.column_middle_grid1 input{
+    background:#e64c65;       
+}
+
+.articles_list h5{
+	color:white;
+}
+
+.column_middle_grid1 input:hover{
+        background: #d4465d;
+}
 .profile_picture{
 	padding:2em 3em;
 	text-align:center;
@@ -557,10 +568,10 @@ fieldset#body {
 	display: block;
 	margin:0 auto;
 	border:5px solid #50597B;
-    border-radius:8em;
-    -webkit-border-radius:8em;
-    -moz-border-radius:8em;
-    -o-border-radius:8em;
+    border-radius:1em;
+    -webkit-border-radius:1em;
+    -moz-border-radius:1em;
+    -o-border-radius:1em;
 }
 .profile_picture_name{
 	padding-top:2em;
@@ -585,14 +596,14 @@ fieldset#body {
 }
 .articles_list li{
 	float:left;
-	width:33.1%;
+	width:24.7%;
 	border-right: 1px solid #1F253D;
 }
 .articles_list li a{
 	display: block;
 	color: #FFF;
 	font-size:1em;	
-	padding:20px 0;
+	padding:10px 0;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -603,10 +614,8 @@ fieldset#body {
 }
 .articles_list li a img{
 	vertical-align:middle;
+	width: 50px;
 	padding-right:5px;
-}
-.articles_list li:nth-child(3){
-	border-right:none;
 }
 .articles_list li a.red{
 	border-top:5px solid #e64c65;
@@ -837,7 +846,7 @@ fieldset#body {
 .column_right_grid span i img{
 	vertical-align:middle;
 }
-.column_right_grid input[type="text"],.column_right_grid input[type="password"],.column_right_grid input[type="email"]{
+.column_right_grid input[type="text"],.column_right_grid input[type="password"], .column_middle_grid1 input[type="search"]{
 	padding:10px;
     color:#FFF;
     font-size:1em;

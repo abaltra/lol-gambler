@@ -2,4 +2,32 @@ extends layout
 
 block content
     .column_left
-        
+        .column_middle_grid1
+            .profile_picture
+                input(id='championSearch', type='search', value='Champion name', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Champion name';}")
+                a(href='')
+                    img(id="championImg", src='', alt='')
+                .profile_picture_name
+                    h2(id="championName") No champion selected!
+                    p(id="championSubtitle")
+                span
+                    a(href='#')
+                        img(src='images/follow_user.png', alt='')         
+            .articles_list
+                ul(id="searchTable")
+                    each champ in champs
+                        li
+                            a.red(onclick='selectChampion("#{champ.portraitURL}", "#{champ.name}", "#{champ.title}")')
+                                img(src=champ.portraitURL, alt='')
+                                h5 #{champ.name}
+                .clear
+                script.
+                    var $rows = $('#searchTable li');
+                    $('#championSearch').keyup(function() {
+                        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+                        $rows.show().filter(function() {
+                            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                            return !~text.indexOf(val);
+                        }).hide();
+                    });
