@@ -19,12 +19,13 @@ async.series([
 			body = JSON.parse(body);
 			var champs = [];
 			_.forEach(body.data, function (n, key) {
-				champs.push({id: n.id, name: n.name, portraitURL: config.riot.championPortraitEndpoint + n.image.full});
+				champs.push({id: n.id, name: n.name, title: n.title, portraitURL: config.riot.championPortraitEndpoint + n.image.full});
 			});
 			async.map(champs, function (item, callback) {
 				var champ = new Champion();
 				champ.id = item.id;
 				champ.name = item.name;
+				champ.title = item.title.charAt(0).toUpperCase() + item.title.slice(1);
 				console.log('Saving ' + champ.name);
 				champ.portraitURL = item.portraitURL;
 				champ.save(function (err) {
