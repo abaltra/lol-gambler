@@ -61,4 +61,6 @@ if (app.get('env') === 'development') {
     });
 }
 
+app.locals._ = require("lodash");
+
 module.exports = app;
