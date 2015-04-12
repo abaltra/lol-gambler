@@ -1,3 +1,4 @@
+var config = require('../config');
 // Connect to DB
 mongoose.connect(config.db.host + ':' + config.db.port + '/' + config.db.name);
 var request = require('sync-request');
@@ -7,7 +8,7 @@ var async = require('async');
 var STARTTIME = 1427865900;
 var CURRENTTIME = STARTTIME;
 var TIME_JUMP = 5 * 60; //5 minutes in seconds
-var SLEEP_TIME = 2 * 60 * 1000; //2 minute in milliseconds
+var SLEEP_TIME = 2 * 60 * 1000; //2 minutes in milliseconds
 var RUN = true;
 
 var get_game_ids_queue = [];
@@ -24,7 +25,14 @@ var STATUS_CODES = {
 
 var FUTURE_TIME_TEXT = 'beginDate is invalid';
 
-async.series([
+function containsObject(arr, object, key) {
+	arr.forEach(function (elem) {
+		if (elem.key === object.key) return true;
+	});
+	return false;
+}
+
+async.waterfall([
 	function (cb) {
 		Match.remove({}, function (err) {
 			console.log('Match collection cleared');
@@ -32,36 +40,34 @@ async.series([
 		});
 	},
 	function (cb) {
-		function magicks = function () {
-			if (get_game_ids_queue.length < 100) { //Only enqueue when we have space
-				config.riot.regions.forEach(function (region) {
-					var call = {query: region.endpoint + 'api/lol/' + region.name + '/v4.1/game/ids?beginDate=' + CURRENTTIME + '&api_key=' + config.riot.apiKey, 
-								region: region.name,
-								region_endpoint: region.endpoint};
-					if (get_game_ids_queue.indexOf(call) !== -1) return;
-					get_game_ids_queue.push(call);
-					get_game_ids_queue = _.uniq(get_game_ids_queue, 'query');
-				});
-				CURRENTTIME += TIME_JUMP;
-			}
-			
-			var value = get_game_ids_queue.pop();
-			var res = request('GET', value.query);
 
-			if (res.statusCode === STATUS_CODES.OK) {
-				var body = JSON.parse(res.body);
-				body.forEach(function (gameId) {
-					var call = value.region_endpoint + 'api/lol/' + value.region + '/v2.2/match/' + gameId + '?includeTimeline=false&api_token=' + config.riot.apiKey;
-					get_game_data_queue.push({query: call,
-												region: value.region});
-				});
-			} else if (res.statusCode === STATUS_CODES.RATE_EXCEEDED {
-				get_game_ids_queue.unshift(value); //Return value to top of queue
-				setTimeout(magicks, SLEEP_TIME); //Sleep for 2 seconds and restart the process
-				return;
+		var domagicks = function () {
+			config.riot.api.regions.forEach(function (region) {
+				var obj = {
+					query: region.endpoint + '/api/lol/' + region.name + '/v4.1/games/ids?beginDate=' + CURRENTTIME + '&api_key=' + config.riot.apiKey,
+					region: region.name
+				};
+				if (!containsObject(get_game_ids_queue, obj, 'query'))
+					get_game_ids_queue.push(obj);
+			});
+
+			if (get_game_ids_queue.length > 0) {
+				var currentIdsQueryData = get_game_ids_queue.shift();
+				var queryReturnData = request('GET', currentIdsQueryData.query);
+				if (queryReturnData.statusCode === STATUS_CODES.RATE_EXCEEDED) {
+					get_game_ids_queue.unshift(currentIdsQueryData);
+					setTimeout(domagicks, SLEEP_TIME);
+					return;
+				} else if (queryReturnData.statusCode === STATUS_CODES.BAD_REQUEST) {
+					get_game_ids_queue.unshift(currentIdsQueryData);
+					setTimeout(domagicks, SLEEP_TIME);
+					return;
+				} else {
+					CURRENTTIME += TIME_JUMP;
+
+				}
 			}
 		}
-		setTimeout(magicks, 100);
 	}
 	], function (err) {
 		if (err) console.log(err);
