@@ -1,8 +1,83 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    title LOL Gambler
+
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+
+    link(href='css/style.css', rel='stylesheet', type='text/css', media='all')
+    link(href='css/nav.css', rel='stylesheet', type='text/css', media='all')
+    link(href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC', rel='stylesheet', type='text/css')
+    script(type='text/javascript', src='js/jquery.js')
+    script(type='text/javascript', src='js/login.js')
+    script(type='text/javascript', src='js/Chart.js')
+    script(type='text/javascript', src='js/jquery.easing.js')  
+    script(type='text/javascript', src='js/jquery.ulslide.js')
+    script(type='text/javascript', src='js/responsive-nav.js')
+    link(rel='stylesheet', href='css/clndr.css', type='text/css')
+    script(src='js/underscore-min.js')
+    script(src='js/moment-2.2.1.js')   
+    script(src='js/clndr.js')
+    script(src='js/site.js')
   body
-    block content
+  body
+    .wrap
+      .header
+        .header_top
+            .menu
+                a.toggleMenu(href='#')
+                    img(src='images/nav.png', alt='')
+                ul.nav
+                    li
+                        if !_.isUndefined( user )
+                            a(href='#')
+                                i
+                                    img(src='images/settings.png', alt='')
+                                | Settings
+                    li.active
+                        if !_.isUndefined( user )
+                            a(href='#')
+                                i
+                                    img(src='images/user.png', alt='')
+                                | Account
+                    li
+                        if !_.isUndefined( user )
+                            a(href='#')
+                                i
+                                    img(src='images/mail.png', alt='')
+                                | Bets 
+                                span.messages 5
+                    .clear
+            if !_.isUndefined( user )
+                .profile_details
+                    #loginContainer
+                        a#loginButton
+                            span Me
+                        |    
+                        | &#x9;&#x9;&#x9;&#x9; 
+                        #loginBox
+                            form#loginForm
+                                fieldset#body
+                                    .user-info
+                                        h4
+                                            | Hello,
+                                            a(href='#')  Username
+                          
+                                        ul
+                                            li.profile.active
+                                                a(href='#') Profile 
+                            
+                                            li.logout
+                                                a(href='#')  Logout
+                            
+                                            .clear
+                .profile_img
+                    a(href='#')
+                        img(src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=40', alt='')
+                    .clear
+            .clear
+
+.main
+    .wrap
+        block content

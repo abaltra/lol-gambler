@@ -9,6 +9,7 @@ module.exports = function(passport){
         },
         function(req, username, password, done) { 
             // check in mongo if a user with username exists or not
+            console.log("Username : "+username);
             User.findOne({ 'username' :  username }, 
                 function(err, user) {
                     // In case of any error, return using the done method
@@ -26,6 +27,7 @@ module.exports = function(passport){
                     }
 
                     if (!user.active) {
+                        console.log("User is active");
                         return done(null, false, req.flash('message', 'Account not activated'));
                     }
                     // User and password both match, return user from done method
