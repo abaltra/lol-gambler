@@ -3,18 +3,18 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport){
-
 	passport.use('login', new LocalStrategy({
             passReqToCallback : true
         },
         function(req, username, password, done) { 
             // check in mongo if a user with username exists or not
-            console.log("Username : "+username);
             User.findOne({ 'username' :  username }, 
                 function(err, user) {
                     // In case of any error, return using the done method
-                    if (err)
+                    if (err){
+                        console.log("Error! "+err);
                         return done(err);
+                    }
                     // Username does not exist, log the error and redirect back
                     if (!user){
                         console.log('User Not Found with username '+username);

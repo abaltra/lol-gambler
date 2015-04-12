@@ -10,11 +10,11 @@ block content
                         span
                             i
                                 img(src='images/user.png', alt='')
-                            input(type='text', value='username', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Enter your username';}", required)
+                            input(type='text', name='username' , value='username', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Enter your username';}", required)
                         span
                             i
                                 img(src='images/lock.png', alt='')     
-                            input(type='password', placeholder='password', required)
+                            input(type='password', name='password', placeholder='password', required)
                         h4
                             a(href='/signup', class='text-center new-account') Create an account
                         input.my-button(type='submit', value='Sign In')
