@@ -53,7 +53,7 @@ module.exports = function(passport){
                             var content = [
                                 {
                                     "name": 'activate_link',
-                                    "content": '<a href="' + config.app.client + '/' + user.activationToken + '"">Activate!</a>'
+                                    "content": '<a href="' + config.app.client + '/activation/' + user.activationToken + '"">Activate!</a>'
                                 }
                             ];
                             mailer.sendEmail(to, 'signup', {content: content, merge: []}, function (err, results) {
