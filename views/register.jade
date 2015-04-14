@@ -1,17 +1,32 @@
 extends layout
 
 block content
-	div.container
-		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
-				h1.text-center.login-title Registration Details
-					div.signup-wall
-						form(class='form-signin', action='/signup', method='POST')
-							input(type='text', name='username', class='form-control', placeholder='Username',required, autofocus)
-							input(type='password', name='password', class='form-control nomargin', placeholder='Password', required)
-							input(type='email', name='email', class='form-control', placeholder='Email',required)
-							button(class='btn btn-lg btn-primary btn-block', type='submit') Register
-							span.clearfix
-					#message
-						if message
-							h1.text-center.error-message #{message}
+    .back_button
+        span
+            a(href='http://www.urfracle.com')
+                img(src='images/arrow-left.png', alt='')
+    .column_middle
+        .column_middle_grid1
+            .column_right_grid.sign-in
+                .sign_in
+                    h3 Registration Details
+                    form(action='/signup', method='POST')
+                        span
+                            i
+                                img(src='images/user.png', alt='')
+                            input(type='text', name='username', placeholder='username', required)
+                        span
+                            i
+                                img(src='images/lock.png', alt='')     
+                            input(type='password', name='password', placeholder='password', required)
+                        span
+                            i
+                                img(src='images/mail.png', alt='')     
+                            input(type='email', name='email', placeholder='Email', required)
+
+                        input.my-button(type='submit', value='Register')
+        #message
+            if message && message != ''
+                h1.error-message #{message}
+            if success && success != ''
+                h1.success-message #{success}

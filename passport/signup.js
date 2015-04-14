@@ -13,6 +13,19 @@ module.exports = function(passport){
         function(req, username, password, done) {
 
             console.log('signing up')
+            if (!username 
+                || username.length === 0 
+                || !password 
+                || password.length === 0
+                || !req.param('email') 
+                || req.param('email').length === 0) 
+            {
+                return done(null, false, req.flash('message', 'Username is required'));
+            }
+
+            if (password.length < 6) {
+                return done(null, false, req.flash('message', 'Password must be at least 6 characters long'));
+            }
             findAndEmail = function() {
                 async.parallel([
                     function (cb) {
@@ -63,7 +76,7 @@ module.exports = function(passport){
                                 if (err) {
                                     return done(null, false, req.flash('message', 'Could not send email to ' + req.param('email')));
                                 }
-                                return done(null, false, req.flash('message', 'Activation email sent to ' + req.param('email'))); 
+                                return done(null, false, req.flash('success', 'Activation email sent to ' + req.param('email'))); 
                             });
                         });
                     });

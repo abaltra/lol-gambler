@@ -837,7 +837,7 @@ fieldset#body {
 .column_right_grid span i img{
 	vertical-align:middle;
 }
-.column_right_grid input[type="text"],.column_right_grid input[type="password"]{
+.column_right_grid input[type="text"],.column_right_grid input[type="password"],.column_right_grid input[type="email"]{
 	padding:10px;
     color:#FFF;
     font-size:1em;
@@ -1014,6 +1014,35 @@ fieldset#body {
 .button a:hover{
 	background:#48b2df;
 }
+
+.error-message {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background: rgba(247, 40, 40, 0.57);
+	margin-top: 20px;
+	font-size: larger;
+	border: 2px solid black;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	-o-border-radius: 25px;
+}
+
+.success-message {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background: rgba(0, 128, 0, 0.57);;
+	margin-top: 20px;
+	font-size: larger;
+	border: 2px solid black;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	-o-border-radius: 25px;
+}
+
 /***** Calender *****/
 .calender{
 	margin-top:30px;

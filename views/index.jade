@@ -18,3 +18,6 @@ block content
                         h4
                             a(href='/signup', class='text-center new-account') Create an account
                         input.my-button(type='submit', value='Sign In')
+        #message
+            if message && message != ''
+                h1.error-message #{message}
