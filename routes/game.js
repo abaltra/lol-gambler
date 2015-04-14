@@ -95,17 +95,11 @@ module.exports = function () {
 		var value = req.body.value;
 		var userid = req.body.userid;
 
-		console.log('biatch ' + userid)
-
 		async.waterfall([
 			function (cb) {
-				console.log('waterfalling')
 				//Check if user can bet
 				User.findOne({_id: new ObjectID(userid)}, {ritoCoins: 1, isBetting: 1, active: 1}, function (err, user) {
-					console.log('found')
 					if (err || !user) return cb(ERRORS.SERVER);
-					console.log('user found')
-					console.log(user)
 					if (user.ritoCoins < amount) return cb(ERRORS.MALFORMED);
 					if (user.isBetting || !user.active) return cb(ERRORS.UNAUTHORIZED);
 					user.isBetting = true;
@@ -118,8 +112,6 @@ module.exports = function () {
 			function (user, cb) {
 				// Retrieve all previous bets
 				Bet.find({userId: userid}, {matchId: 1}, function (err, bets) {
-					console.log('retrieved all bets')
-					console.log(bets)
 					if (err) return cb(ERRORS.SERVER);	
 					bets = [].concat(bets);
 					var matchIds = _.pluck(bets, 'matchId');
@@ -129,8 +121,6 @@ module.exports = function () {
 			function (user, matchIds, cb) {
 				//Find a game where the user hasn't placed a bet
 				Match.findOne({id: {$nin: matchIds}}, {}, function (err, match) {
-					console.log('retrieved a match not betted on')
-					console.log(match)
 					if (err) return cb(ERRORS.SERVER);
 					if (!match) return cb(ERRORS.NOTFOUND);
 					cb(null, user, match);
@@ -156,10 +146,6 @@ module.exports = function () {
 				} else if (bet.type === BETTYPE.CHAMPION) {
 					if (match.championsWin.indexOf(parseInt(bet.value)) || match.championsLose.indexOf(parseInt(bet.value))) {
 						Champion.findOne({id: parseInt(bet.value)}, {appearanceRatio: 1}, function (err, champ) {
-							console.log('retrieved champ')
-							console.log(champ)
-							console.log(err)
-							console.log(champ)
 							if (err) return cb(ERRORS.SERVER);
 							if (!champ) return cb(ERRORS.NOTFOUND);
 							bet.win = true;
@@ -174,9 +160,7 @@ module.exports = function () {
 				}
 			},
 			function (user, bet, cb) {
-				console.log('saving bet')
 				bet.save(function (err) {
-					console.log('bet saved')
 					console.log(err)
 					if (err) return cb(ERRORS.SERVER); 
 					cb(null, user, bet);
@@ -185,10 +169,7 @@ module.exports = function () {
 			function (user, bet, cb) {
 				user.ritoCoins -= bet.amount;
 				user.ritoCoins += bet.winnings;
-				console.log('saving user')
 				user.save(function (err) {
-					console.log('user saved')
-					console.log(err)
 					if (err) return cb(ERRORS.SERVER);
 					cb(null, bet);
 				})
