@@ -2,17 +2,22 @@ extends layout
 
 block content
     .column_left
-        .column_middle_grid1
+        .column_right_grid
+            .newsletter
+                h3 Choose one bet option
+                input.my_button(type='submit', value='Champion  ', onclick='selectBetType("champion")')
+                = "\n"
+                input.my_button(type='submit', value='Team color', onclick='selectBetType("team")')
+
+    .column_middle
+        .column_middle_grid1( id="championSelector" hidden=true )
             .profile_picture
                 input(id='championSearch', type='search', value='Champion name', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Champion name';}")
                 a(href='')
                     img(id="championImg", src='', alt='')
                 .profile_picture_name
                     h2(id="championName") No champion selected!
-                    p(id="championSubtitle")
-                span
-                    a(href='#')
-                        img(src='images/follow_user.png', alt='')         
+                    p(id="championSubtitle")        
             .articles_list
                 ul(id="searchTable")
                     each champ in champs
@@ -31,3 +36,6 @@ block content
                             return !~text.indexOf(val);
                         }).hide();
                     });
+
+    .column_right
+
