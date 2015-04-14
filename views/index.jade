@@ -21,3 +21,5 @@ block content
         #message
             if message && message != ''
                 h1.error-message #{message}
+            if success && success != ''
+                h1.success-message #{success}

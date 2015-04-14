@@ -19,7 +19,7 @@ module.exports = function(passport){
 	/* GET login page. */
 	router.get('/', function(req, res) {
     	// Display the Login page with any flash message, if any
-		res.render('index', { message: req.flash('message') });
+		res.render('index', { message: req.flash('message'), success: req.flash('success')});
 	});
 
 	/* Handle Login POST */
@@ -69,7 +69,7 @@ module.exports = function(passport){
 					res.redirect('/');
 					return;
 				}
-				req.flash('message', 'Account activated!');
+				req.flash('success', 'Account activated!');
 				res.redirect('/');
 				return;
 			});
