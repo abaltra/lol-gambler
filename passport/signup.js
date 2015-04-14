@@ -38,7 +38,7 @@ module.exports = function(passport){
                         user.email = req.param('email');
                         user.username = username;
                         user.password = createHash(password);
-                        user.activationToken = createHash(username).replace('/', '');
+                        user.activationToken = createHash(username).replace(/\//g, '');
                         user.activationTTL = Date.now() + config.app.accountActivationTokenTTL;
 
                         user.save(function (err) {

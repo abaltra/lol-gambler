@@ -40,7 +40,7 @@ module.exports = {
 	'app': {
 		'startingGold': 500,
 		'accountActivationTokenTTL': 20 * 60 * 1000, //20 minutes in miliseconds
-		'port': 8080,
-		'client': 'localhost:8080'
+		'port': 80,
+		'client': 'http://www.urfracle.com'
 	}
 }
