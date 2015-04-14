@@ -6,10 +6,10 @@ function selectChampion(imgUrl, name, subtitle) {
 
 function selectBetType(betType){
 	if( betType == "champion" ){
-		document.getElementById("championSelector").hidden 	= false;
-		document.getElementById("teamSelector").hidden 		= true;
+		document.getElementById("championSelector").style.visibility 	= false;
+		document.getElementById("teamSelector").style.visibility 		= true;
 	}else{
-		document.getElementById("teamSelector").hidden 		= false;
-		document.getElementById("championSelector").hidden 	= true;
+		document.getElementById("teamSelector").style.visibility 		= false;
+		document.getElementById("championSelector").style.visibility 	= true;
 	}
 }
