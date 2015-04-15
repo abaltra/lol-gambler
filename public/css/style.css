@@ -640,7 +640,7 @@ fieldset#body {
 	text-transform: uppercase;
 	padding:15px 0;
 	text-align: center;
-	background:#cc324b;
+	background:#11a8ab;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
@@ -678,15 +678,16 @@ fieldset#body {
 	vertical-align:top;
 }
 .temp_list{
+	opacity: 0.9;
 	background: #394264;
 	border-radius: 0px 0px 5px 5px;
 	-webkit-border-radius: 0px 0px 5px 5px;
 	-moz-border-radius: 0px 0px 5px 5px;
 	-o-border-radius: 0px 0px 5px 5px;
 }
+
 .temp_list li a{
 	display:block;
-	color:#9099B7;
 	font-size:1em;
 	text-transform:uppercase;
 	border-bottom:1px solid #1f253d;
@@ -695,6 +696,10 @@ fieldset#body {
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
+}
+
+.temp_list li:hover {
+	opacity: 1;
 }
 .temp_list li a span{
 	color:#FFF;
@@ -705,9 +710,11 @@ fieldset#body {
 }
 .temp_list li a:hover span,.temp_list li.active a span{
 	color:#e64c65;
+	opacity: 1;
 }
 .temp_list li a:hover,.temp_list li.active a{
 	background:#50597b;
+	opacity: 1;
 }
 .temp_list li a label {
 	color: #FFF;
@@ -1071,6 +1078,14 @@ fieldset#body {
 .column_middle .not_found span{
 	color: white;
 	font-size: xx-large;
+}
+
+.winning_bet {
+	background: rgb(14, 84, 14);;
+}
+
+.losing_bet {
+	background: rgb(86, 28, 28);
 }
 
 /***** Calender *****/

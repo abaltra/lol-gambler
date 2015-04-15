@@ -61,16 +61,30 @@ block content
             .temp_list
                 ul
                     each bet in bets
-                        li
-                            a()
-                                span.day_name #{bet.matchId}
-                                label.digits
-                                    | W : #{bet.winnings}
-                                    em RitoCoins  
-                                label.digits
-                                    | B : #{bet.amount}
-                                    em RitoCoins  
-                                .clear
+                        li.victory_bet
+                            if bet.win && bet.win == true
+                                .winning_bet
+                                    a()
+                                        span.day_name #{bet.matchId}
+                                        label.digits
+                                            | W : #{bet.winnings}
+                                            em RitoCoins  
+                                        label.digits
+                                            | B : #{bet.amount}
+                                            em RitoCoins  
+                                        .clear
+                            else
+                                .losing_bet
+                                    a()
+                                        span.day_name #{bet.matchId}
+                                        label.digits
+                                            | W : #{bet.winnings}
+                                            em RitoCoins  
+                                        label.digits
+                                            | B : #{bet.amount}
+                                            em RitoCoins  
+                                        .clear
+
                     .clear
                 
             
