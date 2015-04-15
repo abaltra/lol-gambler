@@ -37,7 +37,7 @@ body{
 	background:#1f253d;
 	background-image:url(../images/the-card-master.jpg);
 	background-size: 100%;
-	padding:100px 0;
+	padding:50px 0;
 	position:relative;
 }
 .wrap{
@@ -185,6 +185,11 @@ fieldset#body {
 .column_middle{
 	margin:0 3%;
 }
+
+.column_right_home {
+	width: 60%;
+}
+
 /******** Colunm Left *************/
 .menu_box h3 {
 	color: #FFF;
@@ -323,8 +328,7 @@ fieldset#body {
 }
 .chart_list li{
 	float:left;
-	width: 24.8%;
-	border-right: 1px solid #1F253D;
+	width: 50%;
 }
 .chart_list li a{
 	display: block;
@@ -628,7 +632,7 @@ fieldset#body {
 }
 /*** Weather *******/
 .weather,.tweets{
-	margin-top:30px;
+	margin-top: 0px;
 }
 .weather h3,.tweets h3{
 	color: #FFF;
@@ -1052,6 +1056,18 @@ fieldset#body {
 	-o-border-radius: 25px;
 }
 
+.search-champ-li .visible{
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.search-champ-li .hidden{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
 /***** Calender *****/
 .calender{
 	margin-top:30px;
@@ -1132,7 +1148,7 @@ fieldset#body {
 		width:95%;
 	}
 	.chart_list li {
-		width:24.6%;
+		width:50%;
 	}
 	.graph canvas{
 		padding:20px 0;

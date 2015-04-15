@@ -21,7 +21,7 @@ block content
             .articles_list
                 ul(id="searchTable")
                     each champ in champs
-                        li
+                        li(class='seach-champ-li')
                             a.red(onclick='selectChampion("#{champ.portraitURL}", "#{champ.name}", "#{champ.title}")')
                                 img(src=champ.portraitURL, alt='')
                                 h5 #{champ.name}
@@ -36,7 +36,7 @@ block content
                         $rows.show().filter(function() {
                             var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
                             return !~text.indexOf(val);
-                        }).hide();
+                        }).hide({duration: 400, easing: 'linear'});
                     });
                 .clear
         .column_right_grid( id="teamSelector", style="display:none" )

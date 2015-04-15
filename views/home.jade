@@ -3,22 +3,18 @@ extends layout
 block content
     .column_left
         .menu_box
-            h3 Menu Box
+            h3 Menu
             .menu_box_list
                 ul
                     li
                         a.messages(href='/bet')
-                            span Bets
-                            label.digits #{ bets.length }
+                            span Place Bet
                         .clear
                     li
                         a.events()
                             span RitoCoins
                             label.digits #{user.ritoCoins}
                         .clear
-                    li
-                        a.account_settings(href='/home')
-                            span Account Settings
 
         .chart
             h3 Bets statistics
@@ -52,7 +48,7 @@ block content
                         }
                     ];
                     var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
-    .column_middle       
+    .column_middle.column_right_home    
         .weather
             h3
                 i
@@ -67,12 +63,12 @@ block content
                     each bet in bets
                         li
                             a()
-                                span.day_name bet.matchId
+                                span.day_name #{bet.matchId}
                                 label.digits
-                                    | W : bet.winnings
+                                    | W : #{bet.winnings}
                                     em RitoCoins  
                                 label.digits
-                                    | B : bet.amount
+                                    | B : #{bet.amount}
                                     em RitoCoins  
                                 .clear
                     .clear

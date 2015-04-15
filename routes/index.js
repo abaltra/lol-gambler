@@ -3,6 +3,8 @@ var router 	= express.Router();
 var User 	= require('../models/user');
 var Bet 	= require('../models/bet');
 var config 	= require('../config');
+var mongoose = require('mongoose');
+var ObjectID = mongoose.Types.ObjectId;
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -11,6 +13,7 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if the user is not authenticated then redirect him to the login page
+	req.flash('message', 'Please login to continue');
 	res.redirect('/');
 }
 
@@ -78,7 +81,7 @@ module.exports = function(passport){
 
 	/* GET Home Page */
 	router.get('/home', isAuthenticated, function(req, res){
-		Bet.find( { userId : req.user.id }, function( err, bets ){
+		Bet.find( { userId : req.user._id }).sort({date: 'desc'}).exec(function( err, bets ){
 			if( err ){
 				req.flash('message', err);
 				res.redirect('/');
@@ -98,16 +101,21 @@ module.exports = function(passport){
 				if( i < 10 )
 				{
 					lastTenBets.push( bet );
+				} else {
+					break;
 				}
 			}
+
+			console.log('bets are')
+			console.log(lastTenBets)
 
 			res.render('home', { 
 				user: req.user, 
 				bets: lastTenBets,
-				wins: wins,
-				losses: losses
+				wins: Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100,
+				losses: 100 - Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100
 			});
-		}).sort('date')
+		});
 	});
 
 	/* Handle Logout */
