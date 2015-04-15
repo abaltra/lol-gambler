@@ -1,15 +1,19 @@
 extends layout
 
 block content
-    .column_left
+    .column_left(id='left_container')
         .column_right_grid
             .newsletter
                 h3 Choose one bet option
-                input.my_button(type='submit', value='Champion  ', onclick='selectBetType("champion")')
+                input.my_button(type='submit', value='Champion  ', onclick='selectBetType("champ", #{user.ritoCoins}, "#{user._id}")')
                 = "\n"
-                input.my_button(type='submit', value='Team color', onclick='selectBetType("team")')
+                input.my_button(type='submit', value='Team color', onclick='selectBetType("team", #{user.ritoCoins}, "#{user._id}")')
 
-    .column_middle
+    .column_middle(id='mid_container', style='display: none')
+        .back_button
+            span
+                a(onclick='midBack()')
+                    img(src='images/arrow-left.png', alt='')
         .column_middle_grid1( id="championSelector", style="display:none" )
             .profile_picture
                 input(id='championSearch', type='search', value='Champion name', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Champion name';}")
@@ -22,7 +26,7 @@ block content
                 ul(id="searchTable")
                     each champ in champs
                         li(class='seach-champ-li')
-                            a.red(onclick='selectChampion("#{champ.portraitURL}", "#{champ.name}", "#{champ.title}")')
+                            a.red(onclick='selectChampion("#{champ.portraitURL}", "#{champ.name}", "#{champ.title}", "#{champ.id}")')
                                 img(src=champ.portraitURL, alt='')
                                 h5 #{champ.name}
                             .clear
@@ -39,12 +43,26 @@ block content
                         }).hide({duration: 400, easing: 'linear'});
                     });
                 .clear
-        .column_right_grid( id="teamSelector", style="display:none" )
+        .column_right_grid( id="teamSelector", style='display:none')
             .newsletter
                 h3 Choose one team
-                input.my_button(type='submit', style="background:red" , value='Red team', onclick='')
+                input.my_button(type='submit', style="background:red" , value='Red team', onclick='selectTeam(200)')
                 = "\n"
-                input.my_button(type='submit', style="background:blue" , value='Blue team', onclick='')
+                input.my_button(type='submit', style="background:blue" , value='Blue team', onclick='selectTeam(100)')
 
-    .column_right
+    .column_right(id='right_container', style='display:none')
+        .back_button
+            span
+                a(onclick='rightBack()')
+                    img(src='images/arrow-left.png', alt='')
+        .column_right_grid( id='placeBet')
+            .newsletter
+                h3 BET DATA
+                span(id='betLegend')
+                    | You are betting on Vlad, the crimson reaper!
+                .slider_container
+                    .slider(id="betamount")
+                span(id='currentBet')
+                    | ''
+                a.betButton(onclick='placeBet()') Bet!
 

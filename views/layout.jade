@@ -8,6 +8,7 @@ html
 
     link(href='css/style.css', rel='stylesheet', type='text/css', media='all')
     link(href='css/nav.css', rel='stylesheet', type='text/css', media='all')
+    link(href='css/jquery.nouislider.min.css', rel='stylesheet', type='text/css', media='all')
     link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
     link(rel="icon" href="/favicon.ico" type="image/x-icon")
     link(href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC', rel='stylesheet', type='text/css')
@@ -16,13 +17,9 @@ html
     script(type='text/javascript', src='js/Chart.js')
     script(type='text/javascript', src='js/jquery.easing.js')  
     script(type='text/javascript', src='js/jquery.ulslide.js')
-    script(type='text/javascript', src='js/responsive-nav.js')
+    script(type='text/javascript', src='js/jquery.nouislider.all.min.js')
     script(type='text/javascript', src='js/helpers.js')
-    link(rel='stylesheet', href='css/clndr.css', type='text/css')
     script(src='js/underscore-min.js')
-    script(src='js/moment-2.2.1.js')   
-    script(src='js/clndr.js')
-    script(src='js/site.js')
   body
     .wrap
       .header
@@ -37,14 +34,8 @@ html
                         if !_.isUndefined( user )
                             a(href='/home')
                                 i
-                                    img(src='images/settings.png', alt='')
-                                | Settings
-                    li
-                        if !_.isUndefined( user )
-                            a(href='/home')
-                                i
                                     img(src='images/user.png', alt='')
-                                | Account
+                                | Home
                     li
                         if !_.isUndefined( user )
                             a(href='/bet')

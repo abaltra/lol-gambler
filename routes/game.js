@@ -20,7 +20,7 @@ var ERRORS = {
 
 var BETTYPE = {
 	CHAMPION: 'champ',
-	MATCH: 'match'
+	MATCH: 'team'
 };
 
 var isAuthenticated = function (req, res, next) {
@@ -86,7 +86,7 @@ module.exports = function () {
 			return res.status(ERRORS.MALFORMED).send('Amount must be a number');
 		}
 
-		if (req.user._id !== req.body.userid) {
+		if (req.user._id.toString() !== req.body.userid) {
 			return res.status(ERRORS.UNAUTHORIZED).send('Unauthorized action');
 		}
 
@@ -120,7 +120,7 @@ module.exports = function () {
 			},
 			function (user, matchIds, cb) {
 				//Find a game where the user hasn't placed a bet
-				Match.findOne({id: {$nin: matchIds}}, {}, function (err, match) {
+				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winnerTeam: 1}, function (err, match) {
 					if (err) return cb(ERRORS.SERVER);
 					if (!match) return cb(ERRORS.NOTFOUND);
 					cb(null, user, match);
@@ -135,7 +135,11 @@ module.exports = function () {
 				bet.amount = amount;
 
 				if (bet.type === BETTYPE.MATCH) {
-					if (match.winnerTeamId === value) {
+					console.log('match data')
+					console.log(match)
+					console.log('match_id: '+ match.id)
+					console.log('winnerTeam: ' + match.winner)
+					if (match.winnerTeam === value) {
 						bet.win = true;
 						bet.winnings = amount * 1.1;
 					} else {
@@ -144,7 +148,7 @@ module.exports = function () {
 					}
 					cb(null, user, bet);
 				} else if (bet.type === BETTYPE.CHAMPION) {
-					if (match.championsWin.indexOf(parseInt(bet.value)) || match.championsLose.indexOf(parseInt(bet.value))) {
+					if (match.championsWin.indexOf(parseInt(bet.value)) !== -1 || match.championsLose.indexOf(parseInt(bet.value)) !== -1) {
 						Champion.findOne({id: parseInt(bet.value)}, {appearanceRatio: 1}, function (err, champ) {
 							if (err) return cb(ERRORS.SERVER);
 							if (!champ) return cb(ERRORS.NOTFOUND);
