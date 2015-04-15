@@ -10,7 +10,7 @@ block content
                 input.my_button(type='submit', value='Team color', onclick='selectBetType("team")')
 
     .column_middle
-        .column_middle_grid1( id="championSelector" hidden=true )
+        .column_middle_grid1( id="championSelector", style="display:none" )
             .profile_picture
                 input(id='championSearch', type='search', value='Champion name', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Champion name';}")
                 a(href='')
@@ -25,6 +25,8 @@ block content
                             a.red(onclick='selectChampion("#{champ.portraitURL}", "#{champ.name}", "#{champ.title}")')
                                 img(src=champ.portraitURL, alt='')
                                 h5 #{champ.name}
+                            .clear
+                    .clear
                 .clear
                 script.
                     var $rows = $('#searchTable li');
@@ -36,6 +38,13 @@ block content
                             return !~text.indexOf(val);
                         }).hide();
                     });
+                .clear
+        .column_right_grid( id="teamSelector", style="display:none" )
+            .newsletter
+                h3 Choose one team
+                input.my_button(type='submit', style="background:red" , value='Red team', onclick='')
+                = "\n"
+                input.my_button(type='submit', style="background:blue" , value='Blue team', onclick='')
 
     .column_right
 
