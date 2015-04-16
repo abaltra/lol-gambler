@@ -88,6 +88,10 @@ function placeBet() {
         userid: userId
     }
     console.log(dataPack)
+
+    overlay( true );
+    controlAfterBet( 0 );
+
     $.ajax({
         type: 'POST',
         url: '/bet',
@@ -101,4 +105,39 @@ function placeBet() {
             console.log(data)
         }
     })
+}
+
+function overlay( isVisible ) {
+    element     = document.getElementById("overlay");
+    element.style.visibility = !isVisible ? "hidden" : "visible";
+}
+
+var funnyWaitingMessages = [
+    "Killing Teemos...",
+    "Clearing up noxians...",
+    "Adding darkness to your bet...",
+    "Searching for more swords for Master Yi...",
+    "Putting make up over Baron and Dragon...",
+    "Watching Cait and Vi fight with Jinx in the fields of mud..."
+]
+
+function controlAfterBet( progress ){
+    progressBar     = document.getElementById("nexusBar");
+    progressNumber  = document.getElementById("nexusNumber");
+    progressMessage = document.getElementById("nexusMessage");
+
+    progressBar.style.width = progress+"%"; 
+    progressNumber.innerHTML= progress+"%";   
+    console.log("Progress at : "+progress);
+
+    if(     progress == 0  
+        ||  progress == 25 
+        ||  progress == 50
+        ||  progress == 75   
+    ){
+        progressMessage.innerHTML   = funnyWaitingMessages[Math.floor(Math.random()*funnyWaitingMessages.length)]; 
+    }
+
+    if( progress !=100 )
+        setTimeout(controlAfterBet.bind(null, progress+1), 50);  
 }

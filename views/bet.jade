@@ -65,4 +65,29 @@ block content
                 span(id='currentBet')
                     | ''
                 a.betButton(onclick='placeBet()') Bet!
+                .clear
+            .clear
+        .clear
+    .clear
+
+block overlays
+    #overlay
+        #overlaydiv
+            .column_right_grid.downloading_uploading
+                ul
+                    li
+                        | Wait a moment while the nexus is destroyed...         
+                    li
+                         .progress
+                            .progress-bar(id="nexusBar",style='width:0%')                         
+                        .clearfix
+                            p.downloading
+                            h1(id="nexusMessage") Killing Teemos...                                 
+                            p.percentage(id="nexusNumber")
+                                | 0
+                                em %
+                            |                                 
+                            .clear
+                        |  
+
 
