@@ -33,9 +33,26 @@ module.exports = {
 			{
 				'name': 'oce',
 				'endpoint': 'https://oce.api.pvp.net/'
+			},
+			{
+				'name': 'tr',
+				'endpoint': 'https://tr.api.pvp.net/'
+			},
+			{
+				'name': 'ru',
+				'endpoint': 'https://ru.api.pvp.net/'
+			},
+			{
+				'name': 'kr',
+				'endpoint': 'https://kr.api.pvp.net/'
+			},
+			{
+				'name': 'euw',
+				'endpoint': 'https://euw.api.pvp.net/'
 			}
 		],
-		'championPortraitEndpoint': 'http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/'
+		'championPortraitEndpoint': 'http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/',
+		'summonerIconEndpoint': 'http://ddragon.leagueoflegends.com/cdn/5.7.2/img/profileicon/'
 	},
 	'app': {
 		'startingGold': 500,

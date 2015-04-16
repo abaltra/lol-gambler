@@ -4,6 +4,11 @@ var bCrypt = require('bcrypt-nodejs');
 var mailer = require('../utils/mailer');
 var config = require('../config');
 var async = require('async');
+var request = require('request');
+
+var NOT_FOUND = 404;
+var RATE_EXCEEDED = 429;
+var OK = 200;
 
 module.exports = function(passport){
 
@@ -27,20 +32,49 @@ module.exports = function(passport){
                 return done(null, false, req.flash('message', 'Password must be at least 6 characters long'));
             }
             findAndEmail = function() {
-                async.parallel([
+                async.waterfall([
                     function (cb) {
-                        User.findOne({'email': req.param('email'), active: true}, function (err, user) {
-                            if (err) return cb(err);
-                            if (user) return cb('Account already active');                            
-                            cb();
+                        var endpoint = undefined;
+                        config.riot.regions.forEach(function (region) {
+                            if (region.name === req.param('userRegion')) {
+                                endpoint = region.endpoint;
+                            }
+                        });
+                        if (!endpoint) {
+                                return cb('Region not found');
+                        }
+                        parsed_username = username.replace(/ /g, '').toLowerCase();
+                        request(endpoint + '/api/lol/' + req.param('userRegion') + '/v1.4/summoner/by-name/' + encodeURIComponent(username) + '?api_key=' + config.riot.apiKey, function (err, response, body) {
+                            if (err) return cb('Error retrieving summoner data');
+                            if (response.statusCode === NOT_FOUND) {
+                                return cb('Summoner not found');
+                            }
+                            if (response.statusCode === RATE_EXCEEDED) {
+                                return cb('Request rate exceeded. Please try again in a few minutes');
+                            }
+                            if (response.statusCode !== OK) {
+                                return cb('Unknown Error');
+                            }
+                            var resp = JSON.parse(response.body);
+                            var obj = {
+                                profileIconUrl: config.riot.summonerIconEndpoint + resp[parsed_username].profileIconId + '.png',
+                                username: username
+                            };
+                            cb(null, obj);
                         });
                     },
-                    function (cb) {
-                        User.findOne({'username': username, active: true}, function (err, user) {
-                            console.log('finding username')
+                    function (user, cb) {
+                        User.findOne({'email': req.param('email'), active: true}, function (err, saved_user) {
                             if (err) return cb(err);
-                            if (user) return cb('Username already in use');
-                            cb();
+                            if (saved_user) return cb('Account already active');                            
+                            cb(null, user);
+                        });
+                    },
+                    function (user, cb) {
+                        User.findOne({'username': username, active: true}, function (err, saved_user) {
+                            if (err) return cb(err);
+                            if (saved_user) return cb('Username already in use');
+                            cb(null, user);
                         })
                     }
                     ], function (err, results) {
@@ -51,6 +85,7 @@ module.exports = function(passport){
                         user.password = createHash(password);
                         user.activationToken = createHash(username).replace(/\//g, '');
                         user.activationTTL = Date.now() + config.app.accountActivationTokenTTL;
+                        user.profileIconURL = results.profileIconUrl;
 
                         user.save(function (err) {
                             if (err) {
