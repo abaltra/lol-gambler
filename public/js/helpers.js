@@ -108,15 +108,18 @@ function placeBet() {
 }
 
 function overlay( isVisible ) {
-    element     = document.getElementById("overlay");
-    element.style.visibility = !isVisible ? "hidden" : "visible";
+    if( isVisible ){
+        $("#overlay").show();
+    }else{
+        $("#overlay").hide();
+    }
 }
 
 var funnyWaitingMessages = [
     "Killing Teemos...",
     "Clearing up noxians...",
     "Adding darkness to your bet...",
-    "Searching for more swords for Master Yi...",
+    "Searching more swords for Master Yi...",
     "Putting make up over Baron and Dragon...",
     "Watching Cait and Vi fight with Jinx in the fields of mud..."
 ]
@@ -139,5 +142,12 @@ function controlAfterBet( progress ){
     }
 
     if( progress !=100 )
-        setTimeout(controlAfterBet.bind(null, progress+1), 50);  
+        setTimeout(controlAfterBet.bind(null, progress+1), 35);  
+    else
+        showWinLoseModal();
+}
+
+function showWinLoseModal(){
+    $("#overlay2").show();
+    $("#overlay").hide();
 }
