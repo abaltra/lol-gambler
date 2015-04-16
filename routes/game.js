@@ -130,7 +130,7 @@ module.exports = function () {
 					if (!matches || matches.length === 0) return cb(ERRORS.NO_MATCHES_FOUND);
 					var l = matches.length;
 					//Choose a random one
-					var index = Math.floor((Math.random() * length));
+					var index = Math.floor((Math.random() * l));
 					cb(null, user, matches[index]);
 				});
 			},
