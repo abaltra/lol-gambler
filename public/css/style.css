@@ -552,6 +552,7 @@ fieldset#body {
 
 .articles_list h5{
     color:white;
+    display:none;
 }
 
 .column_middle_grid1 input:hover{
@@ -602,14 +603,13 @@ fieldset#body {
 }
 .articles_list li{
     float:left;
-    width:24.7%;
+    width:9.74%;
     border-right: 1px solid #1F253D;
 }
 .articles_list li a{
     display: block;
     color: #FFF;
     font-size:1em;  
-    padding:10px 0;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
@@ -622,15 +622,6 @@ fieldset#body {
     vertical-align:middle;
     width: 50px;
     padding-right:5px;
-}
-.articles_list li a.red{
-    border-top:5px solid #e64c65;
-}
-.articles_list li a.purple{
-    border-top:5px solid #11a8ab;
-}
-.articles_list li a.yellow{
-    border-top:5px solid #fcb150;
 }
 /*** Weather *******/
 .weather,.tweets{
