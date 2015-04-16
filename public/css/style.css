@@ -41,6 +41,7 @@ body{
     padding:50px 0;
     position:relative;
 }
+
 .wrap{
     width:80%;
     margin:0 auto;
@@ -890,6 +891,7 @@ fieldset#body {
     -webkit-apperance:none;
     font-family: 'ambleregular';
 }
+
 .newsletter input[type="submit"]:hover{
         background: #0D9092;
 
@@ -947,6 +949,8 @@ fieldset#body {
 .downloading_uploading{
     margin-top:30px;
     padding:2em 25px;
+    float: center;
+    color: #fff;
 }
 .downloading_uploading p{
       color: #fff;
@@ -985,6 +989,29 @@ fieldset#body {
 .uploading{
     background:#4fc4f6;
 }
+
+/* overlay for popup */
+#overlay {
+     visibility: hidden;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:500%;
+     text-align:center;
+     z-index: 1000;
+     background-image:url(../images/modal.png);
+     background-size: 100%;
+}
+
+#overlaydiv {
+     width:500px;
+     margin: 100px auto;
+     border:1px solid #000;
+     padding:15px;
+     text-align:center;
+}
+
 /********* Events Date ******/
 .date_events{
     margin-top:30px;
