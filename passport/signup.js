@@ -59,7 +59,7 @@ module.exports = function(passport){
                             var obj = {
                                 profileIconUrl: config.riot.summonerIconEndpoint + resp[parsed_username].profileIconId + '.png',
                                 username: username,
-                                region: req.param('userRegion');
+                                region: req.param('userRegion')
                             };
                             cb(null, obj);
                         });

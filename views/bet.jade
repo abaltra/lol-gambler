@@ -91,9 +91,12 @@ block overlays
                         |  
     #overlay2
         #overlaydiv2
-            .column_right_grid2
+            .column_right_grid2( id="winLoseModal" )
                 .newsletter2
-                    h3 You Won!
-                    input.my_button(type='submit', value='Continue', href="/home", onclick='goHome()')
+                    h3(id="modalResult") You Won!
+                    | 
+                    | 
+                    h3(id="modalWinnings") 0 RitoCoins
+                input.my_button(type='submit', value='Continue', href="/home", onclick='goHome()')
 
 

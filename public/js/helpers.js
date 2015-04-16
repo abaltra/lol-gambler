@@ -102,10 +102,15 @@ function placeBet() {
         success: function (data) {
             console.log('success!')
             console.log(data)
+            serverResponseDone          = true;
+            serverResponseWin           = data.win;
+            serverResponseRitoCoins     = data.winnings;
+            showWinLoseModal();
         },
         error: function (data){
             console.log('error!')
             console.log(data)
+
         }
     })
 }
@@ -160,11 +165,33 @@ function controlAfterBet( progress ){
 
     if( progress !=100 )
         setTimeout(controlAfterBet.bind(null, progress+1), 35);  
-    else
+    else{
+        progressBarDone     = true;
         showWinLoseModal();
+    }
 }
 
+var progressBarDone             = false;
+var serverResponseDone          = false;
+var serverResponseWin           = false;
+var serverResponseRitoCoins     = 0;
+
 function showWinLoseModal(){
-    $("#overlay2").show();
-    $("#overlay").hide();
+    if( progressBarDone && serverResponseDone )
+    {
+        if( serverResponseWin ){
+            document.getElementById("winLoseModal").style.background            = "url('../images/win.jpg') no-repeat center";
+            document.getElementById("winLoseModal").style.backgroundSize        = "cover";
+            document.getElementById("modalResult").innerHTML                    = "YOU WIN!"
+            document.getElementById("modalWinnings").innerHTML                  = ""+serverResponseRitoCoins.toFixed(1)+" RitoCoins";
+        }else{
+            document.getElementById("winLoseModal").style.background            = "url('../images/lose.jpg') no-repeat center";
+            document.getElementById("winLoseModal").style.backgroundSize        = "cover";
+            document.getElementById("modalResult").innerHTML                    = "YOU LOSE!"
+            document.getElementById("modalWinnings").innerHTML                  = "";
+        }
+
+        $("#overlay2").show();
+        $("#overlay").hide();
+    }
 }

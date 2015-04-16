@@ -13,7 +13,7 @@ block content
                     li
                         a.events()
                             span RitoCoins
-                            label.digits #{user.ritoCoins}
+                            label.digits #{user.ritoCoins.toFixed(1)}
                         .clear
 
         .chart
@@ -67,22 +67,22 @@ block content
                                     a()
                                         span.day_name #{bet.matchId}
                                         label.digits
-                                            | W : #{bet.winnings}
-                                            em RitoCoins  
+                                            | Win : #{bet.winnings.toFixed(1)}
+                                            em RC
                                         label.digits
-                                            | B : #{bet.amount}
-                                            em RitoCoins  
+                                            | Bet: #{bet.amount}
+                                            em RC     
                                         .clear
                             else
                                 .losing_bet
                                     a()
                                         span.day_name #{bet.matchId}
                                         label.digits
-                                            | W : #{bet.winnings}
-                                            em RitoCoins  
+                                            | Win : #{bet.winnings.toFixed(1)}
+                                            em RC         
                                         label.digits
-                                            | B : #{bet.amount}
-                                            em RitoCoins  
+                                            | Bet : #{bet.amount}
+                                            em RC    
                                         .clear
 
                     .clear

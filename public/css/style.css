@@ -723,6 +723,7 @@ fieldset#body {
     font-size: 1em;
     float: right;
     letter-spacing:1px;
+    padding-left: 10px;
 }
 .temp_list li a label em{
     font-size:0.5em;
@@ -859,7 +860,7 @@ fieldset#body {
 .column_right_grid span i img{
     vertical-align:middle;
 }
-.column_right_grid input[type="text"],.column_right_grid input[type="password"], .column_middle_grid1 input[type="search"], .column_middle_grid1 input[type="email"], .column_middle_grid1 select{
+.column_right_grid input[type="text"], .profile_picture input[type="search"], .column_right_grid input[type="password"], .column_middle_grid1 input[type="search"], .column_middle_grid1 input[type="email"], .column_middle_grid1 select{
     padding:10px;
     color:#FFF;
     font-size:1em;
@@ -1051,11 +1052,12 @@ option {
 
 .column_right_grid2 h3{
     color: #FFF;
-    font-size: 4em;
+    font-size: 3em;
+    padding-bottom: 20px;
     text-transform: uppercase;
 }
 
- .newsletter2 input[type="submit"]{
+ .column_right_grid2 input[type="submit"]{
     padding:15px 2.5em;
     color:#FFF;
     font-size:1em;
@@ -1074,9 +1076,11 @@ option {
     transition: all 0.5s ease-in-out;
     -webkit-apperance:none;
     font-family: 'ambleregular';
+    position: relative;
+    bottom: -180px;
 }
 
-.newsletter2 input[type="submit"]:hover{
+.column_right_grid2 input[type="submit"]:hover{
         background: #0D9092
 }
 
