@@ -58,7 +58,8 @@ module.exports = function(passport){
                             var resp = JSON.parse(response.body);
                             var obj = {
                                 profileIconUrl: config.riot.summonerIconEndpoint + resp[parsed_username].profileIconId + '.png',
-                                username: username
+                                username: username,
+                                region: req.param('userRegion');
                             };
                             cb(null, obj);
                         });
@@ -86,6 +87,7 @@ module.exports = function(passport){
                         user.activationToken = createHash(username).replace(/\//g, '');
                         user.activationTTL = Date.now() + config.app.accountActivationTokenTTL;
                         user.profileIconURL = results.profileIconUrl;
+                        user.region = results.region;
 
                         user.save(function (err) {
                             if (err) {

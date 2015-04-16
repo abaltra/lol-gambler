@@ -7,6 +7,7 @@ module.exports = mongoose.model('User',{
 	password: String,
 	email: String,
 	profileIconURL: String,
+	region: String,
 	lastBonus: {
 		type: Date,
 		default: Date.now
