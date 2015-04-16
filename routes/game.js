@@ -15,7 +15,9 @@ var ERRORS = {
 	MALFORMED: 400,
 	UNAUTHORIZED: 401,
 	NOTFOUND: 404,
-	SERVER: 500
+	SERVER: 500,
+	//CUSTOM ERRORS
+	NO_MATCHES_FOUND: 600
 };
 
 var BETTYPE = {
@@ -120,26 +122,22 @@ module.exports = function () {
 			},
 			function (user, matchIds, cb) {
 				//Find a game where the user hasn't placed a bet
-				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winnerTeam: 1}, function (err, match) {
+				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winner: 1}, function (err, match) {
 					if (err) return cb(ERRORS.SERVER);
-					if (!match) return cb(ERRORS.NOTFOUND);
+					if (!match) return cb(ERRORS.NO_MATCHES_FOUND);
 					cb(null, user, match);
 				});
 			},
-			function (user, match, cb) {
+			function (user, found_match, cb) {
 				var bet = new Bet();
-				bet.matchId = match.id;
+				bet.matchId = found_match.id;
 				bet.userId = user._id;
 				bet.type = type;
 				bet.value = value;
 				bet.amount = amount;
 
 				if (bet.type === BETTYPE.MATCH) {
-					console.log('match data')
-					console.log(match)
-					console.log('match_id: '+ match.id)
-					console.log('winnerTeam: ' + match.winner)
-					if (match.winnerTeam === value) {
+					if (found_match.winner.toString() === value.toString()) {
 						bet.win = true;
 						bet.winnings = amount * 1.1;
 					} else {
@@ -148,10 +146,10 @@ module.exports = function () {
 					}
 					cb(null, user, bet);
 				} else if (bet.type === BETTYPE.CHAMPION) {
-					if (match.championsWin.indexOf(parseInt(bet.value)) !== -1 || match.championsLose.indexOf(parseInt(bet.value)) !== -1) {
+					if (found_match.championsWin.indexOf(parseInt(bet.value)) !== -1 || found_match.championsLose.indexOf(parseInt(bet.value)) !== -1) {
 						Champion.findOne({id: parseInt(bet.value)}, {appearanceRatio: 1}, function (err, champ) {
 							if (err) return cb(ERRORS.SERVER);
-							if (!champ) return cb(ERRORS.NOTFOUND);
+							if (!champ) return cb(ERRORS.MALFORMED);
 							bet.win = true;
 							bet.winnings = bet.amount * (1.1 + (0.9 - champ.appearanceRatio));
 							cb(null, user, bet);
