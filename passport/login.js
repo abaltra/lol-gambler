@@ -2,7 +2,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var DAY = 24 * 60 * 60 * 1000; //One day in ms
-var MIN_COINS = 500;
+var MIN_COINS = 200;
 
 module.exports = function(passport){
 	passport.use('login', new LocalStrategy({
@@ -34,14 +34,15 @@ module.exports = function(passport){
                     }
                     // User and password both match, return user from done method
                     // which will be treated like success
-                    var oldLogin = user.lastSeen;
-                    var newLogin = Date.now();
-                    var diff = newLogin - oldLogin;
+                    var oldBonus = user.lastBonus;
+                    var newBonus = Date.now();
+                    var diff = newBonus - oldBonus;
                     var newSeen = {
-                        lastSeen: newLogin
+                        lastSeen: newBonus
                     } 
-                    if (diff >= DAY && user.ritoCoins < MIN_COINS){
-                        newSeen.ritoCoins = MIN_COINS;
+                    if (diff >= DAY){
+                        newSeen.ritoCoins += MIN_COINS;
+                        newSeen.lastBonus = newBonus;
                         req.flash('success', 'Coins awarded!');
                     }
                     User.update({username: user.username}, {$set: newSeen}, function (err, concern) {

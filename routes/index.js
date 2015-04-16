@@ -109,14 +109,16 @@ module.exports = function(passport){
 				}
 			}
 
-			var perc_wins = Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100;
-			var perc_losses = 100 - Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100;
+			var perc_wins = Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0) * 100);
+			var perc_losses = 100 - perc_wins;
 
 			res.render('home', { 
 				user: req.user, 
 				bets: lastTenBets,
-				wins: isNaN(perc_wins)? 0 : perc_wins,
-				losses: isNaN(perc_losses)? 0 : perc_losses
+				wins: wins,
+				losses: losses,
+				winsPerc: isNaN(perc_wins)? 0 : perc_wins,
+				lossesPerc: isNaN(perc_losses)? 0 : perc_losses
 			});
 		});
 	});

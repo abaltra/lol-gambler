@@ -859,7 +859,7 @@ fieldset#body {
 .column_right_grid span i img{
     vertical-align:middle;
 }
-.column_right_grid input[type="text"],.column_right_grid input[type="password"], .column_middle_grid1 input[type="search"]{
+.column_right_grid input[type="text"],.column_right_grid input[type="password"], .column_middle_grid1 input[type="search"], .column_middle_grid1 input[type="email"]{
     padding:10px;
     color:#FFF;
     font-size:1em;

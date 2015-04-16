@@ -30,7 +30,6 @@ module.exports = function(passport){
                 async.parallel([
                     function (cb) {
                         User.findOne({'email': req.param('email'), active: true}, function (err, user) {
-                            console.log('findinf email')
                             if (err) return cb(err);
                             if (user) return cb('Account already active');                            
                             cb();
@@ -46,7 +45,6 @@ module.exports = function(passport){
                     }
                     ], function (err, results) {
                         if (err) return done(null, false, req.flash('message', err));
-                        console.log('creatinf user')
                         var user = new User();
                         user.email = req.param('email');
                         user.username = username;
@@ -55,7 +53,6 @@ module.exports = function(passport){
                         user.activationTTL = Date.now() + config.app.accountActivationTokenTTL;
 
                         user.save(function (err) {
-                            console.log('user saved')
                             if (err) {
                                 throw err;
                             }
@@ -70,13 +67,10 @@ module.exports = function(passport){
                                 }
                             ];
                             mailer.sendEmail(to, 'signup', {content: content, merge: []}, function (err, results) {
-                                console.log('email sent')
-                                console.log(results)
-                                console.log(err);
                                 if (err) {
                                     return done(null, false, req.flash('message', 'Could not send email to ' + req.param('email')));
                                 }
-                                return done(null, false, req.flash('success', 'Activation email sent to ' + req.param('email'))); 
+                                return done(null, false, req.flash('success', 'Activation email sent to ' + req.param('email') + '. Please be patient, it might take a few minutes.')); 
                             });
                         });
                     });

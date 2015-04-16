@@ -124,11 +124,14 @@ module.exports = function () {
 				});
 			},
 			function (user, matchIds, cb) {
-				//Find a game where the user hasn't placed a bet
-				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winnerTeamId: 1}, function (err, match) {
+				//Find all games where the user hasn't placed a bet
+				Match.find({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winnerTeamId: 1}, function (err, matches) {
 					if (err) return cb(ERRORS.SERVER);
-					if (!match) return cb(ERRORS.NO_MATCHES_FOUND);
-					cb(null, user, match);
+					if (!matches || matches.length === 0) return cb(ERRORS.NO_MATCHES_FOUND);
+					var l = matches.length;
+					//Choose a random one
+					var index = Math.floor((Math.random() * length));
+					cb(null, user, matches[index]);
 				});
 			},
 			function (user, found_match, cb) {
@@ -154,7 +157,7 @@ module.exports = function () {
 							if (err) return cb(ERRORS.SERVER);
 							if (!champ) return cb(ERRORS.MALFORMED);
 							bet.win = true;
-							bet.winnings = bet.amount * (1.1 + (0.9 - champ.appearanceRatio));
+							bet.winnings = Math.floor(bet.amount * (1.1 + (0.9 - champ.appearanceRatio)));
 							cb(null, user, bet);
 						});
 					} else {
