@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    .column_middle
+    .column_left
         .column_middle_grid1
             .column_right_grid.sign-in
                 .sign_in
@@ -23,3 +23,24 @@ block content
                 h1.error-message #{message}
             if success && success != ''
                 h1.success-message #{success}
+
+    .login_right_container
+        h3 Hello and welcome to the URFracle!
+        .text_container
+            p
+                | Our great lord URF has blessed us with a bunch of Ultra Rapid Fire mode games, 
+                | and his desire is to test your knowledge of this most perfect game mode!
+            br
+            p
+                | Do you know what will happen? Can you look into the void and predict the results of URF matches?
+            br
+            p
+                | Care to put your RitoCoins where your mouth is?
+            br
+            p
+                | If so, step right ahead. Show the world what you are made of! 
+            br
+            p.emphasized
+                | Make Urf proud!
+        .right_urf_container 
+            img(src='/images/urf_160x160.jpg')

@@ -51,7 +51,7 @@ body{
     -ms-transition:all .2s linear;
 }
 .header_top{
-    background:#394264;
+    background:rgba(57, 66, 100, 0.88);
     border-radius:5px;
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
@@ -205,7 +205,7 @@ fieldset#body {
     -o-border-radius:5px 5px 0 0;
 }
 .menu_box_list{
-    background:#394264;
+    background:rgba(57, 66, 100, 0.88);
     border-radius:0px 0px 5px 5px;
     -webkit-border-radius:0px 0px 5px 5px;
     -moz-border-radius:0px 0px 5px 5px;
@@ -286,7 +286,7 @@ fieldset#body {
 /******* Carts *********/
 .chart{
     margin-top:30px;
-    background: #394264;
+    background: rgba(57, 66, 100, 0.88);
     text-align: center;
     padding: 2em 0 0 0;
     border-radius: 5px;
@@ -391,7 +391,7 @@ fieldset#body {
 }
 .graph_list{
     padding:25px;
-    background: #394264;
+    background: rgba(57, 66, 100, 0.88);
     border-radius: 0px 0px 5px 5px;
     -webkit-border-radius: 0px 0px 5px 5px;
     -moz-border-radius: 0px 0px 5px 5px;
@@ -539,7 +539,7 @@ fieldset#body {
 }
 /********* Column Middle ***********/
 .column_middle_grid1{
-    background:#394264;
+    background:rgba(57, 66, 100, 0.88);
     border-radius:5px;
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
@@ -680,7 +680,7 @@ fieldset#body {
 }
 .temp_list{
     opacity: 0.9;
-    background: #394264;
+    background: rgba(57, 66, 100, 0.88);
     border-radius: 0px 0px 5px 5px;
     -webkit-border-radius: 0px 0px 5px 5px;
     -moz-border-radius: 0px 0px 5px 5px;
@@ -736,7 +736,7 @@ fieldset#body {
     background:#35aadc;
 }
 .tweets_list{
-    background:#394264;
+    background:rgba(57, 66, 100, 0.88);
     border-radius: 0px 0px 5px 5px;
     -webkit-border-radius: 0px 0px 5px 5px;
     -moz-border-radius: 0px 0px 5px 5px;
@@ -822,7 +822,7 @@ fieldset#body {
 }
 /*********** Colunm Right ***********/
 .column_right_grid{
-    background:#394264;
+    background:rgba(57, 66, 100, 0.88);
     text-align:center;
     padding:2em 0;
     border-radius: 5px;
@@ -1106,6 +1106,43 @@ fieldset#body {
 .slider_container {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.login_right_container {
+    width: 65%;
+    position: relative;
+    background: rgba(57, 66, 100, 0.88);
+    float: left;
+    margin-left: 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    color: white;
+}
+
+.emphasized {
+    font-weight: bold;
+}
+
+.login_right_container h3 {
+    text-transform: uppercase;
+    font-size: larger;
+    padding-bottom: 10px;
+}
+
+.text_container {
+    width: 80%;
+    float: left;
+    font-size: large;
+}
+
+.right_urf_container img{
+    float: right;
+    border: 1px solid black;
+    border-radius: 100px;
 }
 
 .betButton {

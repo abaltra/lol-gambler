@@ -122,7 +122,7 @@ module.exports = function () {
 			},
 			function (user, matchIds, cb) {
 				//Find a game where the user hasn't placed a bet
-				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winner: 1}, function (err, match) {
+				Match.findOne({id: {$nin: matchIds}}, {id: 1, championsWin: 1, championsLose: 1, winnerTeamId: 1}, function (err, match) {
 					if (err) return cb(ERRORS.SERVER);
 					if (!match) return cb(ERRORS.NO_MATCHES_FOUND);
 					cb(null, user, match);
@@ -137,7 +137,7 @@ module.exports = function () {
 				bet.amount = amount;
 
 				if (bet.type === BETTYPE.MATCH) {
-					if (found_match.winner.toString() === value.toString()) {
+					if (found_match.winnerTeamId.toString() === value.toString()) {
 						bet.win = true;
 						bet.winnings = amount * 1.1;
 					} else {

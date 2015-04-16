@@ -6,5 +6,5 @@ module.exports = mongoose.model('Match',{
 	region: String,
 	championsWin: Array,
 	championsLose: Array,
-	winner: Number
+	winnerTeamId: Number
 });
