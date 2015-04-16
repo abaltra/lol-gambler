@@ -24,7 +24,7 @@ html
     .wrap
       .header
         #big-title 
-            h1 LOLGambler
+            h1 The URFracle
         .header_top
             .menu
                 a.toggleMenu(href='#')
@@ -42,6 +42,12 @@ html
                                 i
                                     img(src='images/mail.png', alt='')
                                 | Place Bet 
+                    li
+                        if !_.isUndefined( user )
+                            a(href='/leaderboards')
+                                i
+                                    img(src='images/mail.png', alt='')
+                                | Leaderboards
                     .clear
             if !_.isUndefined( user )
                 .profile_details

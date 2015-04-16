@@ -49,10 +49,13 @@ module.exports = function () {
 		});
 	});
 
-	router.get('/leaderboard', function (req, res) {
+	router.get('/leaderboards', function (req, res) {
 		User.find({active: true}, {username: 1, ritoCoins: 1}, {sort: {ritoCoins: 1}}, function (err, users) {
 			if (err) return res.status(ERRORS.SERVER).send(err);
-			return res.status(OK).send(JSON.stringify(users));
+			return res.render('leaderboard', {
+				user: req.user,
+				leaders: users
+			});
 		});
 	});
 

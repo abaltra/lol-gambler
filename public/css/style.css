@@ -1127,6 +1127,27 @@ fieldset#body {
     font-weight: bold;
 }
 
+.leaderboard_container {
+    border-radius: 5px;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.leaderboard_title {
+    background: rgba(17, 168, 171, 0.56);
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.leaderboard_content {
+    margin-top: 10px;
+    background: red;
+}
+
 .login_right_container h3 {
     text-transform: uppercase;
     font-size: larger;
