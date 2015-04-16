@@ -619,6 +619,7 @@ fieldset#body {
     background: #3F4663;
 }
 .articles_list li a img{
+    cursor:pointer;
     vertical-align:middle;
     width: 50px;
     padding-right:5px;
