@@ -642,7 +642,7 @@ fieldset#body {
     text-transform: uppercase;
     padding:15px 0;
     text-align: center;
-    background:#11a8ab;
+    background: rgba(17, 168, 171, 0.70);
     border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -653,7 +653,7 @@ fieldset#body {
 }
 .today_temp{
     padding:1em 0;
-    background:#e64c65;
+    background: rgba(230, 76, 101, 0.70);
     text-align:center;
 }
 .today_temp img{
@@ -1172,7 +1172,28 @@ fieldset#body {
 
 .leaderboard_content {
     margin-top: 10px;
-    background: red;
+    background: rgba(57, 66, 100, 0.88);
+}
+
+.user_name {
+    float: left;
+}
+
+.user_score {
+    text-align: right;
+}
+
+.leaderboard_content li {
+    font-size: larger;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    color: white;
+}
+
+.leaderboard_content li:hover {
+    background: rgba(57, 66, 100, 1);
 }
 
 .login_right_container h3 {

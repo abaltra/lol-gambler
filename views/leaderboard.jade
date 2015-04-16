@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	.leaderboard_container
+		.leaderboard_title
+			| Leaderboard
+		.leaderboard_content
+			ul
+				for user in leaders
+					li
+						.user_name
+							| #{user.username}
+						.user_score
+							| #{user.ritoCoins} RitoCoins
