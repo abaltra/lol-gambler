@@ -245,7 +245,7 @@ fieldset#body {
     background:#e64c65;
 }
 .menu_box_list li a.messages{
-    background-image:url(../images/mail.png);
+    background-image:url(../images/icon_balance.png);
     background-repeat:no-repeat;
     background-position:30px  13px;
 }
@@ -261,7 +261,7 @@ fieldset#body {
     background-image:url(../images/invites-hover.png);
 }
 .menu_box_list li a.events{
-    background-image:url(../images/events.png);
+    background-image:url(../images/icon_currency.png);
     background-repeat:no-repeat;
     background-position:30px  13px;
 }
