@@ -22,6 +22,9 @@ module.exports = function(passport){
 	/* GET login page. */
 	router.get('/', function(req, res) {
     	// Display the Login page with any flash message, if any
+    	if (req.user) {
+    		return res.redirect('/home');
+    	}
 		res.render('index', { message: req.flash('message'), success: req.flash('success')});
 	});
 
@@ -106,14 +109,14 @@ module.exports = function(passport){
 				}
 			}
 
-			console.log('bets are')
-			console.log(lastTenBets)
+			var perc_wins = Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100;
+			var perc_losses = 100 - Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100;
 
 			res.render('home', { 
 				user: req.user, 
 				bets: lastTenBets,
-				wins: Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100,
-				losses: 100 - Math.floor(wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100
+				wins: isNaN(perc_wins)? 0 : perc_wins,
+				losses: isNaN(perc_losses)? 0 : perc_losses
 			});
 		});
 	});

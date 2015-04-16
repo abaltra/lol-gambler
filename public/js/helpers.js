@@ -79,6 +79,10 @@ function rightBack() {
     currentBetValue = '';
 }
 
+function goHome() {
+    window.location.href = '/home';
+}
+
 function placeBet() {
     console.log('placing bet of type: ' + currentBetType + ' and value ' + currentBetValue)
     var dataPack = {
@@ -87,7 +91,6 @@ function placeBet() {
         amount: $('#betamount').val(),
         userid: userId
     }
-    console.log(dataPack)
 
     overlay( true );
     controlAfterBet( 0 );
@@ -121,7 +124,21 @@ var funnyWaitingMessages = [
     "Adding darkness to your bet...",
     "Searching more swords for Master Yi...",
     "Putting make up over Baron and Dragon...",
-    "Watching Cait and Vi fight with Jinx in the fields of mud..."
+    "Watching Cait and Vi fight with Jinx in the fields of mud...",
+    "Nerfing Irelia...",
+    "Dunking scrubs...",
+    "Winning LCS...",
+    "Raising dongers...",
+    "Oh baby a triple!!",
+    "Mom get the camera!",
+    "Pranking Amumu",
+    "Look at my Hec, my Hec is amazing",
+    "Achieving rank 1 in all ladders...",
+    "Denying XP...",
+    "Camping Dyrus...",
+    "Living up to the potential...",
+    "Aphrolifting...",
+    "BY FAR..."
 ]
 
 function controlAfterBet( progress ){

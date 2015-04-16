@@ -1254,6 +1254,9 @@ fieldset#body {
     padding-bottom: 5px;
     padding-right: 20px;
     color: white;
+    transition: background 0.25s ease-in-out;
+   -moz-transition: background 0.25s ease-in-out;
+   -webkit-transition: background 0.25s ease-in-out;
 }
 
 .leaderboard_content li:hover {

@@ -1,6 +1,8 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var DAY = 24 * 60 * 60 * 1000; //One day in ms
+var MIN_COINS = 500;
 
 module.exports = function(passport){
 	passport.use('login', new LocalStrategy({
@@ -27,12 +29,24 @@ module.exports = function(passport){
                     }
 
                     if (!user.active) {
-                        console.log("User is active");
+                        console.log("User is not active");
                         return done(null, false, req.flash('message', 'Account not activated'));
                     }
                     // User and password both match, return user from done method
                     // which will be treated like success
-                    return done(null, user);
+                    var oldLogin = user.lastSeen;
+                    var newLogin = Date.now();
+                    var diff = newLogin - oldLogin;
+                    var newSeen = {
+                        lastSeen: newLogin
+                    } 
+                    if (diff >= DAY && user.ritoCoins < MIN_COINS){
+                        newSeen.ritoCoins = MIN_COINS;
+                        req.flash('success', 'Coins awarded!');
+                    }
+                    User.update({username: user.username}, {$set: newSeen}, function (err, concern) {
+                        return done(null, user);
+                    });
                 }
             );
 
