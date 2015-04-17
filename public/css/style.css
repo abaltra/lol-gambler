@@ -251,7 +251,7 @@ fieldset#body {
     background-position:30px  13px;
 }
 .menu_box_list li a.messages:hover{
-    background-image:url(../images/mail-hover.png);
+    background-image:url(../images/icon_balance_hover.png);
 }
 .menu_box_list li a.invites{
     background-image:url(../images/invites.png);
@@ -267,7 +267,7 @@ fieldset#body {
     background-position:30px  13px;
 }
 .menu_box_list li a.events:hover{
-    background-image:url(../images/events-hover.png);
+    background-image:url(../images/icon_currency_hover.png);
 }
 .menu_box_list li a.account_settings{
     background-image:url(../images/settings.png);
