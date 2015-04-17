@@ -14,3 +14,5 @@ Make Urf proud!
 This is the whole codebase for www.urfracle.com, from the NodeJS backend to the frontend using jQuery + Jade Templating and the scripts used to query the RioT API to obtain the URF matches data.
 
 Most of the API usage can be seen in the scripts folder, as those scripts were left running to retrieve the URF data to use later in the app.
+
+Keep in mind that if you want to clone the repo and test the app, you need to put your Riot and Mandrill api keys in the proper fields in the config file
