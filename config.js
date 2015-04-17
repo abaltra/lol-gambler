@@ -5,10 +5,10 @@ module.exports = {
 		'port': 27017
 	},
 	'mandrill': {
-		'apiKey': 'e7J3PZMm1KF4qkXLP2nmnw'
+		'apiKey': 'APIKEY'
 	},
 	'riot': {
-		'apiKey': '040f1207-45a5-45f7-bdc5-e41356ce433e',
+		'apiKey': 'APIKEY',
 		'regions': [
 			{
 				'name': 'br',
