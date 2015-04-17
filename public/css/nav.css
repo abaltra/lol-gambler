@@ -23,7 +23,6 @@
 }
 .menu li a:hover{
 	background:#50597b;	
-	border-bottom:5px solid #11a8ab;
 }
 .menu li.active a{
 	background:#50597b;	

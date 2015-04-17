@@ -754,66 +754,7 @@ fieldset#body {
     color:#9099B7;
     padding:10px 0;
 }
-/********* Social Networks **********/
-.social_networks{
-    margin-top:30px;
-}
-.social_networks li a{
-    display:block;
-    margin-bottom:15px;
-    border-radius:5px;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    -o-border-radius:5px;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-}
-.social_networks li a > i{
-    background:#1a4e95;
-    float:left; 
-    padding:14px;
-    border-radius: 5px 0px 0px 5px;
-    -webkit-border-radius: 5px 0px 0px 5px;
-    -moz-border-radius: 5px 0px 0px 5px;
-    -o-border-radius: 5px 0px 0px 5px;
-}
-.social_networks li a span{
-    float:left;
-    font-size:1.2em;
-    color:#FFF;
-    text-transform:uppercase;
-    padding:20px;
-}
-.social_networks li a.facebook{
-    background:#3468af;
-}
-.social_networks li a.facebook:hover{
-    background:#0D4797;
-}
-.social_networks li a.facebook > i{
-    background:#1a4e95;
-}
-.social_networks li a.twitter{
-    background:#4fc4f6;
-}
-.social_networks li a.twitter:hover{
-    background:#0C94CE;
-}
-.social_networks li a.twitter > i{
-    background:#35aadc;
-}
-.social_networks li a.googleplus{
-    background:#e64c65;
-    margin-bottom:0;
-}
-.social_networks li a.googleplus:hover{
-    background:#CA2540;
-}
-.social_networks li a.googleplus > i{
-    background:#cc324b;
-}
+
 /*********** Colunm Right ***********/
 .column_right_grid{
     background:rgba(57, 66, 100, 0.88);
@@ -1362,10 +1303,6 @@ option {
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-}
-.copy-right p a:hover{
-    color:#FFF;
-    text-decoration:underline;
 }
 
 /**** Responsice Layout *****/
