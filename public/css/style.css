@@ -169,6 +169,7 @@ fieldset#body {
     float:right;
 }
 .profile_img img{
+    width: 50px;
     display:block;
     border-radius:3em;
     -webkit-border-radius:3em;
