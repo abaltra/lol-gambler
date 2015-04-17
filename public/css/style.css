@@ -1221,6 +1221,18 @@ option {
    -webkit-transition: background 0.25s ease-in-out;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: red;
+    padding-left: 150px;
+    padding-right: 150px;
+    text-align: center;
+    background: rgba(57, 66, 100, 0.5);
+    color: white;
+}
+
 .leaderboard_content li:hover {
     background: rgba(57, 66, 100, 1);
 }
