@@ -49,7 +49,7 @@ module.exports = function () {
 		});
 	});
 
-	router.get('/leaderboards', function (req, res) {
+	router.get('/leaderboards', isAuthenticated, function (req, res) {
 		User.find({active: true}, {username: 1, ritoCoins: 1, profileIconURL: 1, region: 1}, {sort: {ritoCoins: 1}}, function (err, users) {
 			if (err) return res.status(ERRORS.SERVER).send(err);
 			return res.render('leaderboard', {
