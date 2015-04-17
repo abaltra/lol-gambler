@@ -1247,8 +1247,28 @@ option {
     background: rgba(57, 66, 100, 0.88);
 }
 
+.user_icon {
+    width: 50px;
+    border-radius: 100px;
+    float: left;
+}
+
+.text_container {
+    width: 80%;
+    float: left;
+    font-size: large;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
 .user_name {
     float: left;
+    width: 30%;
+}
+
+.user_region {
+    float: left;
+    width: 30%;
 }
 
 .user_score {
@@ -1262,6 +1282,7 @@ option {
     padding-bottom: 5px;
     padding-right: 20px;
     color: white;
+    overflow: auto;
     transition: background 0.25s ease-in-out;
    -moz-transition: background 0.25s ease-in-out;
    -webkit-transition: background 0.25s ease-in-out;

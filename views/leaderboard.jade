@@ -8,7 +8,12 @@ block content
 			ul
 				for user in leaders
 					li
-						.user_name
-							| #{user.username}
-						.user_score
-							| #{user.ritoCoins.toFixed(1)} RitoCoins
+						.user_icon
+							img.user_icon(src="#{user.profileIconURL}")
+						.text_container
+							.user_name
+								| #{user.username}
+							.user_region
+								| #{user.region.toUpperCase()}
+							.user_score
+								| #{user.ritoCoins.toFixed(1)} RitoCoins
