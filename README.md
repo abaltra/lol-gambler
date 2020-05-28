@@ -1,5 +1,7 @@
 # The URFracle
 
+## THIS URL HAS BEEN DEPRECATED AND IT'S URL IS NO LONGER VALID. KEEPING THE CODE BASE FOR POSTERITY AND FUTURE CRINGY READING.
+
 HELLO AND WELCOME TO THE URFRACLE!
 Our great lord URF has blessed us with a bunch of Ultra Rapid Fire mode games, and his desire is to test your knowledge of this most perfect game mode!
 
